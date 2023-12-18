@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const newBookMW = require("../src/middleware/newBook");
 const Book = require("../src/book");
 const library = require("../data-storage/library");
 
@@ -9,7 +8,7 @@ router.use("/books/:id/download", (req, res) => {
   const { books } = library;
   const idx = books.findIndex((el) => el.id === id);
   if (idx !== -1) {
-    res.json(
+    res.download(
       express.static(__dirname + "/public/books/" + books[idx].fileName)
     );
   }
