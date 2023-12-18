@@ -1,14 +1,11 @@
 const multer = require("multer");
 
-const fileStorage = multer.diskStorage({
+const coverStorage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, "public/img/");
+    cb(null, "public/img");
   },
   filename(req, file, cb) {
-    cb(
-      null,
-      `${new Date().toISOString().replace(/:/g, "-")}-${file.originalname}`
-    );
+    cb(null, `${req.params.id}-${file.originalname}`);
   },
 });
 
@@ -21,4 +18,4 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-module.exports = multer({ fileStorage, fileFilter });
+module.exports = multer({ coverStorage, fileFilter });

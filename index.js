@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const loggerMW = require("./src/middleware/logger");
 const notFoundMW = require("./src/middleware/404");
 const errorMW = require("./src/middleware/error");
-const uploadMW = require("./routes/file.route");
+const uploadMW = require("./routes/upload.route");
 
 // init process env
 dotenv.config();
@@ -18,8 +18,8 @@ app.use(express.json());
 //activate middleware
 app.use("/", loggerMW);
 app.use("/", errorMW);
-app.use("/", api);
-app.use("/", uploadMW);
+app.use("/api", api);
+app.use("/upload", uploadMW);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
 
 const authResBody = {
