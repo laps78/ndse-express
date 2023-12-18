@@ -18,8 +18,8 @@ app.use(express.json());
 //activate middleware
 app.use("/", loggerMW);
 app.use("/", errorMW);
-app.use("/api", api);
-app.use("/upload/img/", uploadMW);
+app.use("/", api);
+app.use("/", uploadMW);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
 
 const authResBody = {
