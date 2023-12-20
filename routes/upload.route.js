@@ -5,40 +5,40 @@ const addBookTextMW = require("../src/middleware/newBook");
 const { findItem } = require("../src/functions");
 const { Storage } = require("../src/storage.io");
 
-const books = new Storage("library").data;
+const storage = new Storage("library");
 
-router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res, next) => {
-  console.log("findItem ", findItem(req.params.id));
+router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res) => {
   if (findItem(req.params.id)) {
+    const books = storage.data;
+    const idx = books.findIndex((el) => el.id === req.params.id);
     if (req.file) {
-      //console.log(req.file);
       const path = "public/img/" + req.file.originalname;
-      console.log(books[req.params.id]);
-      console.log("path: ", path);
-      books[req.params.id].fileCover = path;
-      res.json(path);
+      books[idx].fileCover = path;
+      storage.write(books);
+      return res.json(path);
     }
     res.json("нет обложки");
   } else {
+    res.statusCode(404);
     res.json("404 | книга не найдена");
   }
 });
 
-router.post(
-  "/file/:id",
-  addBookTextMW.single("book-text"),
-  (req, res, next) => {
-    if (findItem(req.params.id)) {
-      if (req.file) {
-        console.log(req.file);
-        const path = "public/books/" + req.file.originalname;
-        books[req.params.id].fileName = path;
-        console.log("path: ", path);
-        res.json(path);
-      }
-      res.json("нет файла");
+router.post("/file/:id", addBookTextMW.single("book-text"), (req, res) => {
+  if (findItem(req.params.id)) {
+    const books = storage.data;
+    const idx = books.findIndex((el) => el.id === req.params.id);
+    if (req.file) {
+      const path = "public/books/" + req.file.originalname;
+      books[idx].fileName = path;
+      storage.write(books);
+      return res.json(path);
     }
+    res.json("нет файла");
+  } else {
+    res.statusCode(404);
+    res.json("404 | книга не найдена");
   }
-);
+});
 
 module.exports = router;

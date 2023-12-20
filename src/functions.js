@@ -5,7 +5,7 @@ const findItem = (index) => {
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === index);
   if (idx !== -1) {
-    return books[idx];
+    return true;
   }
   return false;
 };

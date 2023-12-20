@@ -9,13 +9,13 @@ const fileStorage = multer.diskStorage({
   },
 });
 
-// const allowedTypes = ["text/plain"];
-// const fileFilter = (req, file, cb) => {
-//   if (allowedTypes.includes(file.mimetype)) {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-//};
+const allowedTypes = ["text/plain"];
+const fileFilter = (req, file, cb) => {
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
-module.exports = multer({ fileStorage /*, fileFilter*/ });
+module.exports = multer({ fileStorage, fileFilter });
