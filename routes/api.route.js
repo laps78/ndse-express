@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("../src/book");
-const library = require("../data-storage/library");
 const { Storage } = require("../src/storage.io");
 
 const storage = new Storage("library");
 
 router.use("/books/:id/download", (req, res) => {
   const { id } = req.params;
-  const { books } = library;
+  const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx !== -1) {
     res.download(

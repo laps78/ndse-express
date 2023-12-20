@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { books } = require("../data-storage/library");
 const addCoverMW = require("../src/middleware/newFile");
 const addBookTextMW = require("../src/middleware/newBook");
 const { findItem } = require("../src/functions");
+const { Storage } = require("../src/storage.io");
+
+const books = new Storage("library").data;
 
 router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res, next) => {
   console.log("findItem ", findItem(req.params.id));
