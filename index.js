@@ -11,11 +11,11 @@ const uploadMW = require("./routes/upload.route");
 // init process env
 dotenv.config();
 
-// create app (router)
+// create app
 const app = express();
-app.use(express.json());
 
 //activate middleware
+app.use(express.json());
 app.use("/", loggerMW);
 app.use("/", errorMW);
 app.use("/api", api);
@@ -26,6 +26,7 @@ const authResBody = {
   id: 1,
   mail: "test@mail.ru",
 };
+
 app.use(notFoundMW);
 
 const PORT = process.env.PORT || 3000;

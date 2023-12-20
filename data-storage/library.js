@@ -1,10 +1,7 @@
-const Book = require('../src/book')
+const Book = require("../src/book");
 
 const library = {
-  books: [
-      new Book(),
-      new Book(),
-  ],
+  books: [],
 };
 
 module.exports = library;

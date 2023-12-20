@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../src/book");
 const library = require("../data-storage/library");
+const { Storage } = require("../src/storage.io");
+
+const storage = new Storage("library");
 
 router.use("/books/:id/download", (req, res) => {
   const { id } = req.params;
@@ -15,12 +18,16 @@ router.use("/books/:id/download", (req, res) => {
 });
 
 router.get("/books", (req, res) => {
-  const { books } = library;
-  res.json(books);
+  const books = storage.data;
+  if (books) {
+    res.json(books);
+  } else {
+    res.json("Нет книг");
+  }
 });
 
 router.get("/books/:id", (req, res) => {
-  const { books } = library;
+  const books = storage.data;
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);
 
@@ -43,7 +50,6 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/books/", (req, res) => {
-  const { books } = library;
   const { title, description, authors, favorite, fileCover, fileName } =
     req.body;
 
@@ -55,14 +61,14 @@ router.post("/books/", (req, res) => {
     fileCover,
     fileName
   );
-  books.push(newBook);
+  storage.addNew(newBook);
 
   res.status(201);
   res.json(newBook);
 });
 
 router.put("/books/:id", (req, res) => {
-  const { books } = library;
+  const books = storage.data;
   const { title, description, authors, favorite, fileCover, fileName } =
     req.body;
   const { id } = req.params;
@@ -87,7 +93,7 @@ router.put("/books/:id", (req, res) => {
 });
 
 router.delete("/books/:id", (req, res) => {
-  const { books } = library;
+  const books = storage.data;
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);
 
