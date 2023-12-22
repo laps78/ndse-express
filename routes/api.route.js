@@ -83,7 +83,7 @@ router.put("/books/:id", (req, res) => {
       fileCover,
       fileName,
     };
-
+    storage.write(books);
     res.json(books[idx]);
   } else {
     res.status(404);
@@ -98,6 +98,7 @@ router.delete("/books/:id", (req, res) => {
 
   if (idx !== -1) {
     books.splice(idx, 1);
+    storage.write(books)
     res.json("ok");
   } else {
     res.status(404);
