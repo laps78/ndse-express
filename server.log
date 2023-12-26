@@ -203,3 +203,8 @@
 17:18:0:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
 18:53:8:GET:/api/books/:PostmanRuntime/7.32.1
 18:54:59:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
+18:59:2:DELETE:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+18:59:13:GET:/api/books/:PostmanRuntime/7.32.1
+19:0:4:DELETE:/api/books/a8322cb2-5227-46e9-a3c6-eb8a169914c4:PostmanRuntime/7.32.1
+19:0:8:GET:/api/books/:PostmanRuntime/7.32.1
+19:0:15:DELETE:/api/books/a8322cb2-5227-46e9-a3c6-eb8a169914c4:PostmanRuntime/7.32.1
