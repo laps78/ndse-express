@@ -16,8 +16,8 @@ const app = express();
 
 //activate middleware
 app.use(express.json());
-app.use(loggerMW);
-app.use(errorMW);
+app.use("/", loggerMW);
+app.use("/", errorMW);
 app.use("/api", api);
 app.use("/upload", uploadRoute);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
