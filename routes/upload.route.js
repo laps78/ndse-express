@@ -14,7 +14,7 @@ router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res) => {
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === req.params.id);
     if (req.file) {
-      const path = "public/img/" + req.file.originalname;
+      const path = "public/img/" + req.params.id + "-" + req.file.originalname;
       books[idx].fileCover = path;
       storage.write(books);
       return res.json(path);
@@ -32,7 +32,7 @@ router.post("/file/:id", addBookTextMW.single("book-text"), (req, res) => {
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === req.params.id);
     if (req.file) {
-      const path = "public/books/" + req.file.originalname;
+      const path = "public/books/" + req.params.id + "-" + req.file.originalname;
       books[idx].fileName = path;
       storage.write(books);
       return res.json(path);

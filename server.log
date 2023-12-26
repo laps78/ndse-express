@@ -189,3 +189,17 @@
 16:44:28:GET:/api/:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
 16:44:37:GET:/api/books:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
 16:49:59:POST:/upload/cover/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+16:54:59:POST:/upload/file/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+16:59:45:GET:/api/books/:PostmanRuntime/7.32.1
+17:1:57:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
+17:3:6:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
+17:4:25:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
+17:5:24:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
+17:13:41:GET:/api/books/:PostmanRuntime/7.32.1
+17:14:38:POST:/upload/file/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+17:16:10:POST:/upload/file/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+17:16:37:POST:/upload/file/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+17:17:25:POST:/upload/cover/1683963b-6048-42a2-a6ea-3d36b1b2f460:PostmanRuntime/7.32.1
+17:18:0:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1
+18:53:8:GET:/api/books/:PostmanRuntime/7.32.1
+18:54:59:GET:/api/books/1683963b-6048-42a2-a6ea-3d36b1b2f460/download:PostmanRuntime/7.32.1

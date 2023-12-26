@@ -10,9 +10,8 @@ router.use("/books/:id/download", (req, res) => {
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx !== -1) {
-    res.download(
-      express.static(__dirname + "/public/books/" + books[idx].fileName)
-    );
+    console.log( books[idx].fileName)
+    res.download(/*__dirname + */books[idx].fileName);
   }
 });
 
