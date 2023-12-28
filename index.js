@@ -1,8 +1,9 @@
 const express = require("express");
 const api = require("./routes/api.route");
 const dotenv = require("dotenv");
+const viewEngine = require("./routes/view-engine.route");
 
-// activate middleware
+// import middleware & routers
 const loggerMW = require("./src/middleware/logger");
 const notFoundMW = require("./src/middleware/404");
 const errorMW = require("./src/middleware/error");
@@ -14,10 +15,13 @@ dotenv.config();
 // create app
 const app = express();
 
+// activate templates
+app.set('view enjine', 'ejs');
 //activate middleware
 app.use(express.json());
 app.use("/", loggerMW);
 app.use("/", errorMW);
+app.use('/', viewEngine);
 app.use("/api", api);
 app.use("/upload", uploadRoute);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
