@@ -6,7 +6,7 @@ class Storage {
     this.name = name;
     this.fileName = `${name}.json`;
     this.path = path.join(
-      process.mainModule.path,
+      process.mainModule.path, //Todo: replace previous with "process.main" for best practice
       "data-storage",
       this.fileName
     );
