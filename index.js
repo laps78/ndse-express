@@ -1,7 +1,7 @@
 const express = require("express");
 const api = require("./routes/api.route");
 const dotenv = require("dotenv");
-const viewEngine = require("./routes/view-engine.route");
+const viewEngine = require("./routes/viewEngine.route");
 
 // import middleware & routers
 const loggerMW = require("./src/middleware/logger");
