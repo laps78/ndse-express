@@ -1,11 +1,10 @@
 const express = require("express")
-const router = express.Router
+const router = express.Router()
 
-const viewEngine = (req, res, next) => {
-  console.log("viewEngine")
-  next()
-}
-
-router.use("/", viewEngine)
+router.get("/", (rew, res) => {
+  res.render("index", {
+    title: 'Главная'
+  })
+})
 
 module.exports = router

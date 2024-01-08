@@ -1,3 +1,4 @@
+// import basic modules
 const express = require("express");
 const api = require("./routes/api.route");
 const dotenv = require("dotenv");
@@ -16,9 +17,11 @@ dotenv.config();
 const app = express();
 
 // activate templates
-app.set('view enjine', 'ejs');
-//activate middleware
+app.set('view engine', 'ejs');
+
+// activate middleware
 app.use(express.json());
+app.use(express.urlencoded());
 app.use("/", loggerMW);
 app.use("/", errorMW);
 app.use('/', viewEngine);
