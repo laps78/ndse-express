@@ -10,8 +10,8 @@ router.use("/books/:id/download", (req, res) => {
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx !== -1) {
-    console.log( books[idx].fileName)
-    res.download(/*__dirname + */books[idx].fileName);
+    console.log(books[idx].fileName);
+    res.download(/*__dirname + */ books[idx].fileName);
   }
 });
 
@@ -48,6 +48,7 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/books/", (req, res) => {
+  // TODO этот код можно вынести в functions.js - создание книги
   const { title, description, authors, favorite, fileCover, fileName } =
     req.body;
 
@@ -60,12 +61,14 @@ router.post("/books/", (req, res) => {
     fileName
   );
   storage.addNew(newBook);
+  // TODO конец кода функции создания книги
 
   res.status(201);
   res.json(newBook);
 });
 
 router.put("/books/:id", (req, res) => {
+  // TODO это повторяющийся код. Его нужно вынести в functions.js - код функции обновления книги
   const books = storage.data;
   const { title, description, authors, favorite, fileCover, fileName } =
     req.body;
@@ -88,6 +91,7 @@ router.put("/books/:id", (req, res) => {
     res.status(404);
     res.json("404 | книга не найдена");
   }
+  // TODO конец кода функции обновления книги
 });
 
 router.delete("/books/:id", (req, res) => {
@@ -97,7 +101,7 @@ router.delete("/books/:id", (req, res) => {
 
   if (idx !== -1) {
     books.splice(idx, 1);
-    storage.write(books)
+    storage.write(books);
     res.json("ok");
   } else {
     res.status(404);
