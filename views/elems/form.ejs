@@ -1,0 +1,71 @@
+<% if (book.fileCover) {%>
+<img src="<%=book.filecover %>" alt="Обложка книги" />
+<%}%>
+
+<form action="<%= action %>" method="POST" class="mt-5">
+  <div class="form-group">
+    <label for="inputTitle">Название</label>
+    <input
+      type="text"
+      value="<%= book.title %>"
+      name="title"
+      class="form-control"
+      id="inputTitle"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="inputAuthors">Авторы</label>
+    <input
+      type="text"
+      value="<%= book.authors %>"
+      name="authors"
+      class="form-control"
+      id="inputAuthors"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="textareaDescription" class="form-label">Описание книги</label>
+    <textarea class="form-control" id="textareaDescription" rows="3"></textarea>
+  </div>
+
+  <div class="mb-3 form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      value="<% book.favorite %>"
+      id="favorite "
+    />
+    <label class="form-check-label" for="favorite">В избранном</label>
+  </div>
+
+  <div class="mb-3">
+    <div class="mb-3">
+      <label for="fileCover" class="form-label">Выбрать обложку книги</label>
+      <input
+        class="form-control"
+        type="file"
+        value="<% book.fileCover %>"
+        id="fileCover"
+      />
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="fileName">
+      <span class="form-file-text">Выбрать файл книги</span>
+    </label>
+    <input
+      type="file"
+      value="<%= book.fileName %>"
+      name="fileName"
+      class="form-control"
+      id="fileName"
+    />
+  </div>
+
+  <div class="form-group text-right mt-3">
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+  </div>
+</form>
