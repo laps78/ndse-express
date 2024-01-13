@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 class Storage {
-  constructor(name) {
+  constructor(name = "default-storage") {
     this.name = name;
     this.fileName = `${name}.json`;
     this.path = path.join(
