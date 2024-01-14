@@ -11,6 +11,7 @@
       name="title"
       class="form-control"
       id="inputTitle"
+      required
     />
   </div>
 
@@ -22,6 +23,7 @@
       name="authors"
       class="form-control"
       id="inputAuthors"
+      required
     />
   </div>
 
@@ -35,7 +37,7 @@
       type="checkbox"
       class="form-check-input"
       value="<% book.favorite %>"
-      id="favorite "
+      id="favorite"
     />
     <label class="form-check-label" for="favorite">В избранном</label>
   </div>
@@ -48,6 +50,7 @@
         type="file"
         value="<% book.fileCover %>"
         id="fileCover"
+        required
       />
     </div>
   </div>
@@ -62,6 +65,7 @@
       name="fileName"
       class="form-control"
       id="fileName"
+      required
     />
   </div>
 

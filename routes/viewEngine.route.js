@@ -3,6 +3,9 @@ const router = express.Router();
 
 const { Book } = require("../src/book");
 const { Storage } = require("../src/storage.io");
+const { findItem } = require("../src/functions");
+const { createBook, updateBook } = require("../src/book.mod");
+
 const storage = new Storage("library");
 const books = storage.data;
 
@@ -41,32 +44,25 @@ router.get("/update/:id", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  // TODO этот код можно вынести в functions.js - код функции создание книги
-  const { title, description, authors, favorite, fileCover, fileName } =
-    req.body;
-
-  const newBook = new Book(
-    title,
-    description,
-    authors,
-    favorite,
-    fileCover,
-    fileName
-  );
-  storage.addNew(newBook);
-  // TODO конец кода функции создания книги
-
+  createBook(req.body);
   res.redirect("/");
 });
 
 router.post("/updete/:id", (req, res) => {
-  const books = storage.data;
-  const { title, description, authors, favorite, fileCover, fileName } =
-    req.body;
+  /** TODO inspect folowing method!
+   *
+   * - возможно, стоит поиск производить через findItem()?
+   * - код воще не протестирован
+   * - не отрабатываются файлы обложки и книги
+   * - ваще неясно, что приходит в body запроса
+   * - ...
+   */
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);
 
-  if (idx !== -1) {
+  if (findItem) {
+    const { title, description, authors, favorite, fileCover, fileName } =
+      req.body;
     books[idx] = {
       ...books[idx],
       title,
@@ -77,6 +73,7 @@ router.post("/updete/:id", (req, res) => {
       fileName,
     };
     storage.write(books);
+
     res.redirect("/");
   } else {
     res.status(404);
