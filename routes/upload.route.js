@@ -4,13 +4,13 @@ const addCoverMW = require("../src/middleware/newCover");
 const addBookTextMW = require("../src/middleware/newBook");
 const { findItem } = require("../src/functions");
 const { Storage } = require("../src/storage.io");
-const e = require("express");
 
 const storage = new Storage("library");
-
+// TODO это повторяющийся код, используется также
+// для загрузки файлов через форму шаблона
 router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res) => {
   if (findItem(req.params.id)) {
-    console.log(findItem(req.params.id))
+    console.log(findItem(req.params.id));
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === req.params.id);
     if (req.file) {
@@ -27,12 +27,13 @@ router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res) => {
 });
 
 router.post("/file/:id", addBookTextMW.single("book-text"), (req, res) => {
-  console.log(findItem(req.params.id))
+  console.log(findItem(req.params.id));
   if (findItem(req.params.id)) {
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === req.params.id);
     if (req.file) {
-      const path = "public/books/" + req.params.id + "-" + req.file.originalname;
+      const path =
+        "public/books/" + req.params.id + "-" + req.file.originalname;
       books[idx].fileName = path;
       storage.write(books);
       return res.json(path);

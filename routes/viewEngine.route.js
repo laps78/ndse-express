@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+const addCoverMW = require("../src/middleware/newCover");
+const addBookTextMW = require("../src/middleware/newBook");
+
 const { Book } = require("../src/book");
 const { Storage } = require("../src/storage.io");
 const { findItem } = require("../src/functions");
@@ -48,38 +51,43 @@ router.post("/create", (req, res) => {
   res.redirect("/");
 });
 
-router.post("/updete/:id", (req, res) => {
-  /** TODO inspect folowing method!
-   *
-   * - возможно, стоит поиск производить через findItem()?
-   * - код воще не протестирован
-   * - не отрабатываются файлы обложки и книги
-   * - ваще неясно, что приходит в body запроса
-   * - ...
-   */
-  const { id } = req.params;
-  const idx = books.findIndex((el) => el.id === id);
+router.post(
+  "/update/:id",
+  addCoverMW.single("cover-img"),
+  addBookTextMW.single("book-text"),
+  (req, res) => {
+    /** TODO inspect folowing method!
+     *
+     * - возможно, стоит поиск производить через findItem()?
+     * - код воще не протестирован
+     * - не отрабатываются файлы обложки и книги
+     * - ваще неясно, что приходит в body запроса
+     * - ...
+     */
+    const { id } = req.params;
+    const idx = books.findIndex((el) => el.id === id);
 
-  if (findItem) {
-    const { title, description, authors, favorite, fileCover, fileName } =
-      req.body;
-    books[idx] = {
-      ...books[idx],
-      title,
-      description,
-      authors,
-      favorite,
-      fileCover,
-      fileName,
-    };
-    storage.write(books);
+    if (findItem()) {
+      const { title, description, authors, favorite, fileCover, fileName } =
+        req.body;
+      books[idx] = {
+        ...books[idx],
+        title,
+        description,
+        authors,
+        favorite,
+        fileCover,
+        fileName,
+      };
+      storage.write(books);
 
+      res.redirect("/");
+    } else {
+      res.status(404);
+      res.json("404 | книга не найдена");
+    }
     res.redirect("/");
-  } else {
-    res.status(404);
-    res.json("404 | книга не найдена");
   }
-  res.redirect("/");
-});
+);
 
 module.exports = router;

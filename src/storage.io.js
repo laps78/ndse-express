@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 class Storage {
-  constructor(name = "default-storage") {
+  constructor(name = "library") {
     this.name = name;
     this.fileName = `${name}.json`;
     this.path = path.join(
@@ -15,7 +15,7 @@ class Storage {
   }
 
   setData(data) {
-    this.data = data;
+    this.data.push(data);
   }
 
   read() {
@@ -23,6 +23,7 @@ class Storage {
       if (err) {
         console.error(err);
       }
+      console.log(JSON.parse(data));
       this.setData(JSON.parse(data));
     });
   }

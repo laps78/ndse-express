@@ -1,10 +1,17 @@
 const { Book } = require("./book");
 const { Storage } = require("./storage.io");
-const storage = new Storage("./library");
+const storage = new Storage("library");
 const books = storage.data;
 
 const createBook = (data) => {
-  const newBook = new Book(...data);
+  const newBook = new Book(
+    data.title,
+    data.description,
+    data.authors,
+    data.favorite,
+    data.fileCover,
+    data.fileName
+  );
   storage.addNew(newBook);
 };
 
