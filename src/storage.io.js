@@ -46,6 +46,7 @@ class Storage {
         console.error(err);
       }
     });
+    this.read();
   }
 
   addNew(data) {

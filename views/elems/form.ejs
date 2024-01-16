@@ -34,10 +34,10 @@
 
   <div class="mb-3 form-check">
     <input
-      name="favorite"
       type="checkbox"
+      name="favorite"
       class="form-check-input"
-      value="<% book.favorite %>"
+      value="<%= book.favorite %> "
       id="favorite"
     />
     <label class="form-check-label" for="favorite">В избранном</label>
@@ -50,7 +50,7 @@
         name="fileCover"
         class="form-control"
         type="file"
-        value="<% book.fileCover %>"
+        value="<%= book.fileCover %>"
         id="fileCover"
         required
       />

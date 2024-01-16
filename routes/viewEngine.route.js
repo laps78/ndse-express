@@ -110,7 +110,7 @@ router.post("/books/delete/:id", (req, res) => {
     res.status(200);
     res.redirect("/books");
   } else {
-    res.statusCode(404);
+    res.status(404);
     res.json("404 | книга не найдена");
   }
 });
