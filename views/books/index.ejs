@@ -15,9 +15,7 @@ include('../elems/menu') %>
       <% books.map((el, idx) => { console.log(books); %>
       <tr>
         <th scope="row"><%= idx +1 %></th>
-        <td class="text-right">
-          <a href="/books/<%=el.id %>"> <%= el.title %></a>
-        </td>
+        <td class="text-left"><%= el.title %></td>
         <td class="text-right">
           <a class="btn btn-sm btn-success" href="/books/<%= el.id %>">
             <i class="fa fa-eye" aria-hidden="true"></i>

@@ -42,8 +42,9 @@ router.get("/create", (req, res) => {
   });
 });
 
-router.get("/update/:id", (req, res) => {
+router.get("/books/update/:id", (req, res) => {
   const { id } = req.params;
+  const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx === -1) {
     res.redirect("/404");
@@ -51,7 +52,7 @@ router.get("/update/:id", (req, res) => {
 
   res.render("books/update", {
     title: "Библиотека | редактировать книгу",
-    book: storage.data[idx],
+    book: books[idx],
   });
 });
 
@@ -61,7 +62,7 @@ router.post("/create", (req, res) => {
 });
 
 router.post(
-  "/update/:id",
+  "/books/update/:id",
   addCoverMW.single("cover-img"),
   addBookTextMW.single("book-text"),
   (req, res) => {
@@ -74,13 +75,14 @@ router.post(
      * - ...
      */
     const { id } = req.params;
-    const idx = storage.data.findIndex((el) => el.id === id);
+    const books = storage.data;
+    const idx = books.findIndex((el) => el.id === id);
 
     if (idx !== -1) {
       const { title, description, authors, favorite, fileCover, fileName } =
         req.body;
-      storage.data[idx] = {
-        ...storage.data[idx],
+      books[idx] = {
+        ...books[idx],
         title,
         description,
         authors,
@@ -88,14 +90,13 @@ router.post(
         fileCover,
         fileName,
       };
-      storage.write(storage.data);
+      storage.write(books);
 
       res.redirect("/");
     } else {
       res.status(404);
       res.json("404 | книга не найдена");
     }
-    res.redirect("/");
   }
 );
 
