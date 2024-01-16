@@ -1,4 +1,5 @@
-<%- include('../port/layout-start', {title: title}) %>
+<%- include('../port/layout-start', {title: title}) %> <%-
+include('../elems/menu') %>
 <body>
   <%- include('../elems/form', {book: book, action: `/update/${book.id}`}) %>
   <%- include('../port/layout-end') %>

@@ -57,8 +57,9 @@ router.get("/books/update/:id", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
+  console.log("req.body: ", req.body);
   createBook(req.body);
-  res.redirect("/");
+  res.redirect("/books");
 });
 
 router.post(
@@ -99,5 +100,19 @@ router.post(
     }
   }
 );
+
+router.post("/books/delete/:id", (req, res) => {
+  const books = storage.data;
+  const idx = books.findIndex((el) => el.id === req.params.id);
+  if (idx !== -1) {
+    books.splice(idx, 1);
+    storage.write(books);
+    res.status(200);
+    res.redirect("/books");
+  } else {
+    res.statusCode(404);
+    res.json("404 | книга не найдена");
+  }
+});
 
 module.exports = router;

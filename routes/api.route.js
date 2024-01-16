@@ -3,6 +3,7 @@ const router = express.Router();
 const Book = require("../src/book");
 const { Storage } = require("../src/storage.io");
 
+const { createBook, updateBook } = require("../src/book.mod");
 const storage = new Storage("library");
 
 router.use("/books/:id/download", (req, res) => {
@@ -48,21 +49,7 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/books/", (req, res) => {
-  // TODO этот код можно вынести в functions.js - создание книги
-  const { title, description, authors, favorite, fileCover, fileName } =
-    req.body;
-
-  const newBook = new Book(
-    title,
-    description,
-    authors,
-    favorite,
-    fileCover,
-    fileName
-  );
-  storage.addNew(newBook);
-  // TODO конец кода функции создания книги
-
+  createBook(req.body);
   res.status(201);
   res.json(newBook);
 });
