@@ -1,9 +1,11 @@
 const { Book } = require("./book");
 const { Storage } = require("./storage.io");
 const storage = new Storage("library");
-const books = storage.data;
 
 const createBook = (data) => {
+  /**
+   * TODO не определяется состояние чекбокса
+   */
   const newBook = new Book(
     data.title,
     data.description,

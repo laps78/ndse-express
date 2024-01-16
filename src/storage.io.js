@@ -32,7 +32,8 @@ class Storage {
         if (err) {
           console.error(err);
         }
-        this.setData(JSON.parse(data));
+        const readData = JSON.parse(data);
+        this.setData(readData);
       });
     } catch (err) {
       console.error(err);

@@ -10,27 +10,25 @@ const { findItem } = require("../src/functions");
 const { createBook, updateBook } = require("../src/book.mod");
 
 const storage = new Storage("library");
-const books = storage.data;
 
 router.get("/", (req, res) => {
   res.render("index", {
     title: "Главная",
-    books: books,
   });
 });
 
 router.get("/books", (req, res) => {
   res.render("books/index", {
     title: "Библиотека",
-    books: books,
+    books: storage.data,
   });
 });
 
 router.get("/books/:id", (req, res) => {
-  const idx = books.findIndex((elem) => elem.id === req.params.id);
+  const idx = storage.data.findIndex((elem) => elem.id === req.params.id);
   if (idx !== -1) {
     res.render("books/view", {
-      book: books[idx],
+      book: storage.data[idx],
     });
   } else {
     res.json("404 | книга не найдена");
@@ -53,7 +51,7 @@ router.get("/update/:id", (req, res) => {
 
   res.render("books/update", {
     title: "Библиотека | редактировать книгу",
-    book: books[idx],
+    book: storage.data[idx],
   });
 });
 
@@ -76,13 +74,13 @@ router.post(
      * - ...
      */
     const { id } = req.params;
-    const idx = books.findIndex((el) => el.id === id);
+    const idx = storage.data.findIndex((el) => el.id === id);
 
     if (idx !== -1) {
       const { title, description, authors, favorite, fileCover, fileName } =
         req.body;
-      books[idx] = {
-        ...books[idx],
+      storage.data[idx] = {
+        ...storage.data[idx],
         title,
         description,
         authors,
@@ -90,7 +88,7 @@ router.post(
         fileCover,
         fileName,
       };
-      storage.write(books);
+      storage.write(storage.data);
 
       res.redirect("/");
     } else {
