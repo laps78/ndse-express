@@ -14,6 +14,7 @@ router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res) => {
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === req.params.id);
     if (req.file) {
+      console.log(req);
       const path = "public/img/" + req.params.id + "-" + req.file.originalname;
       books[idx].fileCover = path;
       storage.write(books);

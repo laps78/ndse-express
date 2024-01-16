@@ -1,11 +1,1 @@
-[
-  {
-    "id": "f6834efc-afc3-4db3-86e5-992d93c38c61",
-    "title": "Первая победа",
-    "description": "",
-    "authors": "Пушкин А.С.",
-    "favorite": "",
-    "fileCover": "",
-    "fileName": "book_template.txt"
-  }
-]
+[{"id":"f6834efc-afc3-4db3-86e5-992d93c38c61","title":"Первая победа","description":"","authors":"Пушкин А.С.","favorite":"","fileCover":"","fileName":"book_template.txt"},{"id":"29cbf039-b396-4e45-96ef-2462ac25fdb4","title":"Война и мир","description":"","authors":"Толстой Л.Н.","favorite":"","fileCover":"","fileName":"prompt.maker.txt"}]

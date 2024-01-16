@@ -1,0 +1,12 @@
+<%- include("../port/layout-start", { title: book.title}) %> <%-
+include("../elems/menu") %>
+
+<img
+  class="md-3"
+  src="<%=book.fileCover %>"
+  alt="Обложка книги '<%=book.title %>'"
+/>
+<span class="md-3">Авторы: <%= book.authors %></span>
+<p class="md-3"><%=book.description %></p>
+<a href="<%=book.fileName %>">Скачать в формате .txt</a>
+<%- include("../port/layout-end") %>

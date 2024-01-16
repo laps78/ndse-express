@@ -11,6 +11,7 @@ const coverStorage = multer.diskStorage({
 
 const allowedTypes = ["image/png", "image/jpg", "image/jpeg"];
 const fileFilter = (req, file, cb) => {
+  console.log(file);
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {

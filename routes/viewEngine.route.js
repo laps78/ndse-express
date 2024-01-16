@@ -26,6 +26,17 @@ router.get("/books", (req, res) => {
   });
 });
 
+router.get("/books/:id", (req, res) => {
+  const idx = books.findIndex((elem) => elem.id === req.params.id);
+  if (idx !== -1) {
+    res.render("books/view", {
+      book: books[idx],
+    });
+  } else {
+    res.json("404 | книга не найдена");
+  }
+});
+
 router.get("/create", (req, res) => {
   res.render("books/create", {
     title: "Добавить книгу",
@@ -67,7 +78,7 @@ router.post(
     const { id } = req.params;
     const idx = books.findIndex((el) => el.id === id);
 
-    if (findItem()) {
+    if (idx !== -1) {
       const { title, description, authors, favorite, fileCover, fileName } =
         req.body;
       books[idx] = {
