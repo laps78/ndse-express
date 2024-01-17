@@ -856,3 +856,16 @@
 19:9:5:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
 19:9:48:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
 19:10:54:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:19:14:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:19:30:POST:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:19:31:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:19:34:GET:/books/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:19:35:GET:/books/gnome-icon.png:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:21:35:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:22:9:POST:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:22:10:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:23:52:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:24:8:POST:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:26:1:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+19:26:9:POST:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+20:7:14:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
