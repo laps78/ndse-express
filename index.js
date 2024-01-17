@@ -17,14 +17,14 @@ dotenv.config();
 const app = express();
 
 // activate templates
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 // activate middleware
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use("/", loggerMW);
 app.use("/", errorMW);
-app.use('/', viewEngine);
+app.use("/", viewEngine);
 app.use("/api", api);
 app.use("/upload", uploadRoute);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
