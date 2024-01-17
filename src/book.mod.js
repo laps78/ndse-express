@@ -1,9 +1,6 @@
 const { Book } = require("./book");
-const { Storage } = require("./storage.io");
 
-const createBook = (data) => {
-  const storage = new Storage("library");
-
+const createBook = (data, storage) => {
   const newBook = new Book(
     data.title,
     data.description,
@@ -15,8 +12,7 @@ const createBook = (data) => {
   storage.addNew(newBook);
 };
 
-const updateBook = (data) => {
-  const storage = new Storage("library");
+const updateBook = (data, storage) => {
   /**
    * TODO тут нужно имплементировать функцию/метод
    */

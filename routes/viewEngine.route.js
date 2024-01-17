@@ -7,6 +7,14 @@ const addBookTextMW = require("../src/middleware/newBook");
 const { Storage } = require("../src/storage.io");
 const { createBook, updateBook } = require("../src/book.mod");
 
+router.use((req, res, next) => {
+  const storage = new Storage("library");
+  setTimeout(() => {
+    req.storage = storage;
+    next();
+  }, 1000);
+});
+
 router.get("/", (req, res) => {
   res.render("index", {
     title: "Главная",
@@ -14,18 +22,14 @@ router.get("/", (req, res) => {
 });
 
 router.get("/books", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
-  console.log("books: ", books);
   res.render("books/index", {
     title: "Библиотека",
-    books: books,
+    books: req.storage.data,
   });
 });
 
 router.get("/books/:id", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   const idx = books.findIndex((elem) => elem.id === req.params.id);
   if (idx !== -1) {
     res.render("books/view", {
@@ -45,9 +49,8 @@ router.get("/create", (req, res) => {
 });
 
 router.get("/books/update/:id", (req, res) => {
-  const storage = new Storage("library");
   const { id } = req.params;
-  const books = storage.data;
+  const books = req.storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx === -1) {
     res.redirect("/404");
@@ -61,8 +64,7 @@ router.get("/books/update/:id", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  console.log("req.body: ", req.body);
-  createBook(req.body);
+  createBook(req.body, req.storage);
   res.redirect("/books");
 });
 
@@ -74,9 +76,8 @@ router.post(
     /** TODO inspect folowing method!
      *
      */
-    const storage = new Storage("library");
     const { id } = req.params;
-    const books = storage.data;
+    const books = req.storage.data;
     const idx = books.findIndex((el) => el.id === id);
 
     if (idx !== -1) {
@@ -91,7 +92,7 @@ router.post(
         fileCover,
         fileName,
       };
-      storage.write(books);
+      req.storage.write(books);
 
       res.redirect("/books");
     } else {
@@ -102,12 +103,11 @@ router.post(
 );
 
 router.post("/books/delete/:id", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   const idx = books.findIndex((el) => el.id === req.params.id);
   if (idx !== -1) {
     books.splice(idx, 1);
-    storage.write(books);
+    req.storage.write(books);
     res.status(200);
     res.redirect("/books");
   } else {
