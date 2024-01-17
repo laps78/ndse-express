@@ -4,12 +4,8 @@ const router = express.Router();
 const addCoverMW = require("../src/middleware/newCover");
 const addBookTextMW = require("../src/middleware/newBook");
 
-const { Book } = require("../src/book");
 const { Storage } = require("../src/storage.io");
-const { findItem } = require("../src/functions");
 const { createBook, updateBook } = require("../src/book.mod");
-
-const storage = new Storage("library");
 
 router.get("/", (req, res) => {
   res.render("index", {
@@ -18,19 +14,22 @@ router.get("/", (req, res) => {
 });
 
 router.get("/books", (req, res) => {
-  storage.read();
+  const storage = new Storage("library");
+  const books = storage.data;
+  console.log("books: ", books);
   res.render("books/index", {
     title: "Библиотека",
-    books: storage.data,
+    books: books,
   });
 });
 
 router.get("/books/:id", (req, res) => {
-  storage.read();
-  const idx = storage.data.findIndex((elem) => elem.id === req.params.id);
+  const storage = new Storage("library");
+  const books = storage.data;
+  const idx = books.findIndex((elem) => elem.id === req.params.id);
   if (idx !== -1) {
     res.render("books/view", {
-      book: storage.data[idx],
+      book: books[idx],
     });
   } else {
     res.json("404 | книга не найдена");
@@ -46,7 +45,7 @@ router.get("/create", (req, res) => {
 });
 
 router.get("/books/update/:id", (req, res) => {
-  storage.read();
+  const storage = new Storage("library");
   const { id } = req.params;
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
@@ -75,7 +74,7 @@ router.post(
     /** TODO inspect folowing method!
      *
      */
-    storage.read();
+    const storage = new Storage("library");
     const { id } = req.params;
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === id);
@@ -103,7 +102,7 @@ router.post(
 );
 
 router.post("/books/delete/:id", (req, res) => {
-  storage.read();
+  const storage = new Storage("library");
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === req.params.id);
   if (idx !== -1) {

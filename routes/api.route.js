@@ -4,10 +4,10 @@ const Book = require("../src/book");
 const { Storage } = require("../src/storage.io");
 
 const { createBook, updateBook } = require("../src/book.mod");
-const storage = new Storage("library");
 
 router.use("/books/:id/download", (req, res) => {
   const { id } = req.params;
+  const storage = new Storage("library");
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx !== -1) {
@@ -17,6 +17,7 @@ router.use("/books/:id/download", (req, res) => {
 });
 
 router.get("/books", (req, res) => {
+  const storage = new Storage("library");
   const books = storage.data;
   if (books) {
     res.json(books);
@@ -26,6 +27,7 @@ router.get("/books", (req, res) => {
 });
 
 router.get("/books/:id", (req, res) => {
+  const storage = new Storage("library");
   const books = storage.data;
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);
@@ -55,7 +57,7 @@ router.post("/books/", (req, res) => {
 });
 
 router.put("/books/:id", (req, res) => {
-  // TODO это повторяющийся код. Его нужно вынести в functions.js - код функции обновления книги
+  const storage = new Storage("library");
   const books = storage.data;
   const { title, description, authors, favorite, fileCover, fileName } =
     req.body;
@@ -78,10 +80,10 @@ router.put("/books/:id", (req, res) => {
     res.status(404);
     res.json("404 | книга не найдена");
   }
-  // TODO конец кода функции обновления книги
 });
 
 router.delete("/books/:id", (req, res) => {
+  const storage = new Storage("library");
   const books = storage.data;
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);

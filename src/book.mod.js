@@ -1,13 +1,9 @@
 const { Book } = require("./book");
 const { Storage } = require("./storage.io");
-const storage = new Storage("library");
 
 const createBook = (data) => {
-  storage.read();
-  /**
-   * TODO не определяется состояние чекбокса
-   */
-  console.log(data);
+  const storage = new Storage("library");
+
   const newBook = new Book(
     data.title,
     data.description,
@@ -20,7 +16,7 @@ const createBook = (data) => {
 };
 
 const updateBook = (data) => {
-  storage.read();
+  const storage = new Storage("library");
   /**
    * TODO тут нужно имплементировать функцию/метод
    */
