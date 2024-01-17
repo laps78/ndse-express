@@ -1,14 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const Book = require("../src/book");
 const { Storage } = require("../src/storage.io");
 
 const { createBook, updateBook } = require("../src/book.mod");
 
+router.use((req, res, next) => {
+  const storage = new Storage("library");
+  setTimeout(() => {
+    req.storage = storage;
+    next();
+  }, 1000);
+});
+
 router.use("/books/:id/download", (req, res) => {
   const { id } = req.params;
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   const idx = books.findIndex((el) => el.id === id);
   if (idx !== -1) {
     console.log(books[idx].fileName);
@@ -17,8 +23,7 @@ router.use("/books/:id/download", (req, res) => {
 });
 
 router.get("/books", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   if (books) {
     res.json(books);
   } else {
@@ -27,8 +32,7 @@ router.get("/books", (req, res) => {
 });
 
 router.get("/books/:id", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);
 
@@ -51,14 +55,13 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/books/", (req, res) => {
-  createBook(req.body);
+  createBook(req.body, req.storage);
   res.status(201);
   res.json(newBook);
 });
 
 router.put("/books/:id", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   const { title, description, authors, favorite, fileCover, fileName } =
     req.body;
   const { id } = req.params;
@@ -74,7 +77,7 @@ router.put("/books/:id", (req, res) => {
       fileCover,
       fileName,
     };
-    storage.write(books);
+    req.storage.write(books);
     res.json(books[idx]);
   } else {
     res.status(404);
@@ -83,14 +86,13 @@ router.put("/books/:id", (req, res) => {
 });
 
 router.delete("/books/:id", (req, res) => {
-  const storage = new Storage("library");
-  const books = storage.data;
+  const books = req.storage.data;
   const { id } = req.params;
   const idx = books.findIndex((el) => el.id === id);
 
   if (idx !== -1) {
     books.splice(idx, 1);
-    storage.write(books);
+    req.storage.write(books);
     res.json("ok");
   } else {
     res.status(404);
