@@ -1,12 +1,21 @@
 <%- include("../port/layout-start", { title: book.title}) %> <%-
 include("../elems/menu") %>
 
+<a href="/books/update/<%= book.id %>">Редактировать</a>
+<br />
 <img
   class="md-3"
-  src="<%=book.fileCover %>"
-  alt="Обложка книги '<%=book.title %>'"
+  src="<%= book.fileCover %>"
+  alt="Обложка книги '<%= book.title %>'"
 />
+<br />
 <span class="md-3">Авторы: <%= book.authors %></span>
-<p class="md-3"><%=book.description %></p>
-<a href="<%=book.fileName %>">Скачать в формате .txt</a>
+<br />
+<p class="md-3">Описание: <%=book.description %></p>
+<br />
+<span>В избранном: </span
+><span><% if (book.favorite) { %>Да<% } else { %>Нет<% } %></span>
+<br />
+<a href="<%= book.fileName %>">Скачать в формате .txt</a>
+
 <%- include("../port/layout-end") %>

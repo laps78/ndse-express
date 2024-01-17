@@ -18,6 +18,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/books", (req, res) => {
+  storage.read();
   res.render("books/index", {
     title: "Библиотека",
     books: storage.data,
@@ -25,6 +26,7 @@ router.get("/books", (req, res) => {
 });
 
 router.get("/books/:id", (req, res) => {
+  storage.read();
   const idx = storage.data.findIndex((elem) => elem.id === req.params.id);
   if (idx !== -1) {
     res.render("books/view", {
@@ -39,10 +41,12 @@ router.get("/create", (req, res) => {
   res.render("books/create", {
     title: "Добавить книгу",
     book: {},
+    action: "/create",
   });
 });
 
 router.get("/books/update/:id", (req, res) => {
+  storage.read();
   const { id } = req.params;
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === id);
@@ -52,6 +56,7 @@ router.get("/books/update/:id", (req, res) => {
 
   res.render("books/update", {
     title: "Библиотека | редактировать книгу",
+    action: `/books/update/${id}`,
     book: books[idx],
   });
 });
@@ -69,12 +74,8 @@ router.post(
   (req, res) => {
     /** TODO inspect folowing method!
      *
-     * - возможно, стоит поиск производить через findItem()?
-     * - код воще не протестирован
-     * - не отрабатываются файлы обложки и книги
-     * - ваще неясно, что приходит в body запроса
-     * - ...
      */
+    storage.read();
     const { id } = req.params;
     const books = storage.data;
     const idx = books.findIndex((el) => el.id === id);
@@ -93,7 +94,7 @@ router.post(
       };
       storage.write(books);
 
-      res.redirect("/");
+      res.redirect("/books");
     } else {
       res.status(404);
       res.json("404 | книга не найдена");
@@ -102,6 +103,7 @@ router.post(
 );
 
 router.post("/books/delete/:id", (req, res) => {
+  storage.read();
   const books = storage.data;
   const idx = books.findIndex((el) => el.id === req.params.id);
   if (idx !== -1) {
