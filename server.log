@@ -869,3 +869,16 @@
 19:26:1:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
 19:26:9:POST:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
 20:7:14:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0
+14:14:58:GET:/:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:6:GET:/:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:27:GET:/books:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:31:GET:/books/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:32:GET:/books/gnome-icon.png:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:34:GET:/books/update/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:40:POST:/books/delete/c29187fd-48a7-4abd-aa42-101d9a3d9300:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:18:41:GET:/books:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:19:16:GET:/create:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:19:31:POST:/create:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:19:32:GET:/books:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:19:42:GET:/books/7d1dbb37-c2f0-45ef-b8fc-187513b516b6:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
+14:19:52:GET:/books/update/7d1dbb37-c2f0-45ef-b8fc-187513b516b6:Mozilla/5.0 (Android 10; Mobile; rv:121.0) Gecko/121.0 Firefox/121.0
