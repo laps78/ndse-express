@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const addCoverMW = require("../src/middleware/newCover");
-const addBookTextMW = require("../src/middleware/newBook");
+const formMulter = require("../src/middleware/uploadFromFormMW");
 
 const { Storage } = require("../src/storage.io");
 const { createBook, updateBook } = require("../src/book.mod");
@@ -13,6 +12,10 @@ router.use((req, res, next) => {
     req.storage = storage;
     next();
   }, 1000);
+});
+
+router.use((req, res, next) => {
+  next();
 });
 
 router.get("/", (req, res) => {
@@ -63,44 +66,39 @@ router.get("/books/update/:id", (req, res) => {
   });
 });
 
-router.post("/create", (req, res) => {
+router.post("/create", formMulter, (req, res) => {
   createBook(req.body, req.storage);
   res.redirect("/books");
 });
 
-router.post(
-  "/books/update/:id",
-  addCoverMW.single("cover-img"),
-  addBookTextMW.single("book-text"),
-  (req, res) => {
-    /** TODO inspect folowing method!
-     *
-     */
-    const { id } = req.params;
-    const books = req.storage.data;
-    const idx = books.findIndex((el) => el.id === id);
+router.post("/books/update/:id", formMulter, (req, res) => {
+  /** TODO inspect folowing method!
+   *
+   */
+  const { id } = req.params;
+  const books = req.storage.data;
+  const idx = books.findIndex((el) => el.id === id);
 
-    if (idx !== -1) {
-      const { title, description, authors, favorite, fileCover, fileName } =
-        req.body;
-      books[idx] = {
-        ...books[idx],
-        title,
-        description,
-        authors,
-        favorite,
-        fileCover,
-        fileName,
-      };
-      req.storage.write(books);
+  if (idx !== -1) {
+    const { title, description, authors, favorite, fileCover, fileName } =
+      req.body;
+    books[idx] = {
+      ...books[idx],
+      title,
+      description,
+      authors,
+      favorite,
+      fileCover,
+      fileName,
+    };
+    req.storage.write(books);
 
-      res.redirect("/books");
-    } else {
-      res.status(404);
-      res.json("404 | книга не найдена");
-    }
+    res.redirect("/books");
+  } else {
+    res.status(404);
+    res.json("404 | книга не найдена");
   }
-);
+});
 
 router.post("/books/delete/:id", (req, res) => {
   const books = req.storage.data;
