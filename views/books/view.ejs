@@ -1,11 +1,11 @@
-<%- include("../port/layout-start", { title: book.title}) %> <%-
-include("../elems/menu") %>
+<%- include("../port/layout-start", { title: book.title}) %>
+<%- include("../elems/menu") %>
 
 <a href="/books/update/<%= book.id %>">Редактировать</a>
 <br />
 <img
   class="md-3"
-  src="<%= book.fileCover %>"
+  src="/public/img/<%= book.fileCover %>"
   alt="Обложка книги '<%= book.title %>'"
 />
 <br />
