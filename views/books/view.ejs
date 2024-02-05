@@ -1,6 +1,5 @@
-<%- include("../port/layout-start", { title: book.title}) %>
-<%- include("../elems/menu") %>
-
+<%- include("../port/layout-start", { title: book.title}) %> <%-
+include("../elems/menu") %> <% console.log(book) %>
 <a href="/books/update/<%= book.id %>">Редактировать</a>
 <br />
 <img
@@ -11,7 +10,7 @@
 <br />
 <span class="md-3">Авторы: <%= book.authors %></span>
 <br />
-<p class="md-3">Описание: <%=book.description %></p>
+<p class="md-3">Описание: <%= book.description %></p>
 <br />
 <span>В избранном: </span
 ><span><% if (book.favorite) { %>Да<% } else { %>Нет<% } %></span>

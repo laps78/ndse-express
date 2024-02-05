@@ -1,6 +1,6 @@
-<%- include('../port/layout-start', {title: title}) %> <%-
-include('../elems/menu') %>
-<body>
+<%- include('../port/layout-start', {title: title}) %>
+<%- include('../elems/menu') %>
+
   <% if(books.length) { %>
 
   <table class="table table-striped table-sm mt-3">
@@ -42,5 +42,7 @@ include('../elems/menu') %>
   <h3 class="mt-5 margin-3">
     Данных пока нет. <a href="/create">Добавить?</a>
   </h3>
-  <% } %> <%- include('../port/layout-end') %>
-</body>
+  <% } %>
+
+<%- include('../port/layout-end') %>
+

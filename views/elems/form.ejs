@@ -2,11 +2,12 @@
 <img src="<%=book.filecover %>" alt="Обложка книги" class="mt-5 margin-3" />
 <%}%>
 
-<form 
-	action="<%= action %>"
-	method="POST"
-	enctype="multipart/form-data"
-	class="mt-5 margin-3">
+<form
+  action="<%= action %>"
+  method="POST"
+  enctype="multipart/form-data"
+  class="mt-5 margin-3"
+>
   <div class="form-group">
     <label for="inputTitle">Название</label>
     <input
@@ -38,7 +39,9 @@
       id="textareaDescription"
       rows="3"
       name="description"
-    ><%= book.description %></textarea>
+    >
+<%= book.description %></textarea
+    >
   </div>
 
   <div class="mb-3 form-check">
@@ -50,9 +53,9 @@
       id="favorite"
       <%
       if(book.favorite)
-      {%>
-    checked <% } %> 
+      {%
     />
+    checked <% } %> />
     <label class="form-check-label" for="favorite">В избранном</label>
   </div>
 
@@ -64,7 +67,7 @@
         class="form-control"
         type="file"
         value="<%= book.fileCover %>"
-        placeholder="<%= book.filecover || 'не выбрано' %>"
+        placeholder="<%= book.fileCover || 'не выбрано' %>"
         id="fileCover"
       />
     </div>
@@ -78,6 +81,7 @@
       type="file"
       value="<%= book.fileName %>"
       name="fileName"
+      placeholder="<%= book.fileName || 'не выбрано' %>"
       class="form-control"
       id="fileName"
     />

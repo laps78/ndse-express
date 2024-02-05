@@ -21,7 +21,7 @@ app.set("view engine", "ejs");
 
 // activate middleware
 app.use(express.json());
-app.use(express.urlencoded(/*{ extended: true }*/));
+app.use(express.urlencoded({ extended: true }));
 app.use("/", loggerMW);
 app.use("/", errorMW);
 app.use("/", viewEngine);
