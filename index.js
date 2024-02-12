@@ -1,98 +1,40 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const { v4: uuid } = require('uuid')
-const Book = require('./src/book')
-const library = require('./data-libraryage/library')
+// import basic modules
+const express = require("express");
+const api = require("./routes/api.route");
+const dotenv = require("dotenv");
+const viewEngine = require("./routes/viewEngine.route");
+
+// import middleware & routers
+const loggerMW = require("./src/middleware/logger");
+const notFoundMW = require("./src/middleware/404");
+const errorMW = require("./src/middleware/error");
+const uploadRoute = require("./routes/upload.route");
 
 // init process env
-dotenv.config()
+dotenv.config();
 
-// create app (router)
-const app = express()
-app.use(express.json())
+// create app
+const app = express();
+
+// activate templates
+app.set("view engine", "ejs");
+
+// activate middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/", loggerMW);
+app.use("/", errorMW);
+app.use("/", viewEngine);
+app.use("/api", api);
+app.use("/upload", uploadRoute);
+app.use("/public/books/", express.static(__dirname + "/public/books/"));
 
 const authResBody = {
   id: 1,
-  mail: 'test@mail.ru',
-}
+  mail: "test@mail.ru",
+};
 
-app.get('/api/books', (req, res) => {
-    const {books} = library
-    res.json(books)
-})
+app.use(notFoundMW);
 
-app.get('/api/books/:id', (req, res) => {
-    const {books} = library
-    const {id} = req.params
-    const idx = books.findIndex(el => el.id === id)
-
-    if( idx !== -1) {
-        res.json(books[idx])
-    } else {
-        res.status(404)
-        res.json('404 | книга не найдена')
-    }
-
-})
-
-app.post('/api/user', (req, res) => {
-  res.status(201)
-  res.json(authResBody)
-})
-
-app.post('/login', (req, res) => {
-  res.status(201)
-  res.json(authResBody)
-})
-
-app.post('/api/books/', (req, res) => {
-    const {books} = library
-    const {title, description, authors, favorite, fileCover, fileName} = req.body
-
-    const newBook = new Book(title, description, authors, favorite, fileCover, fileName)
-    books.push(newBook)
-
-    res.status(201)
-    res.json(newBook)
-})
-
-app.put('/api/books/:id', (req, res) => {
-    const {books} = library
-    const {title, description, authors, favorite, fileCover, fileName} = req.body
-    const {id} = req.params
-    const idx = books.findIndex(el => el.id === id)
-
-    if (idx !== -1){
-        books[idx] = {
-          ...books[idx],
-          title,
-          description,
-          authors,
-          favorite,
-          fileCover,
-          fileName
-        }
-
-        res.json(books[idx])
-    } else {
-        res.status(404)
-        res.json('404 | книга не найдена')
-    }
-})
-
-app.delete('/api/books/:id', (req, res) => {
-    const {books} = library
-    const {id} = req.params
-    const idx = books.findIndex(el => el.id === id)
-     
-    if(idx !== -1){
-        books.splice(idx, 1)
-        res.json('ok')
-    } else {
-        res.status(404)
-        res.json('404 | книга не найдена')
-    }
-})
-
-const PORT = process.env.PORT || 3000
-app.listen(PORT)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT) && console.log(`listening on http://localhost:${PORT}`);

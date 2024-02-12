@@ -1,0 +1,93 @@
+<% if (book.fileCover) {%>
+<img src="<%=book.filecover %>" alt="Обложка книги" class="mt-5 margin-3" />
+<%}%>
+
+<form
+  action="<%= action %>"
+  method="POST"
+  enctype="multipart/form-data"
+  class="mt-5 margin-3"
+>
+  <div class="form-group">
+    <label for="inputTitle">Название</label>
+    <input
+      type="text"
+      value="<%= book.title %>"
+      name="title"
+      class="form-control"
+      id="inputTitle"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="inputAuthors">Авторы</label>
+    <input
+      type="text"
+      value="<%= book.authors %>"
+      name="authors"
+      class="form-control"
+      id="inputAuthors"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="textareaDescription" class="form-label">Описание книги</label>
+    <textarea
+      class="form-control"
+      id="textareaDescription"
+      rows="3"
+      name="description"
+    >
+<%= book.description %></textarea
+    >
+  </div>
+
+  <div class="mb-3 form-check">
+    <input
+      type="checkbox"
+      name="favorite"
+      class="form-check-input"
+      value="<%= book.favorite || true %> "
+      id="favorite"
+      <%
+      if(book.favorite)
+      {%
+    />
+    checked <% } %> />
+    <label class="form-check-label" for="favorite">В избранном</label>
+  </div>
+
+  <div class="mb-3">
+    <div class="mb-3">
+      <label for="fileCover" class="form-label">Выбрать обложку книги</label>
+      <input
+        name="fileCover"
+        class="form-control"
+        type="file"
+        value="<%= book.fileCover %>"
+        placeholder="<%= book.fileCover || 'не выбрано' %>"
+        id="fileCover"
+      />
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="fileName">
+      <span class="form-file-text">Выбрать файл книги</span>
+    </label>
+    <input
+      type="file"
+      value="<%= book.fileName %>"
+      name="fileName"
+      placeholder="<%= book.fileName || 'не выбрано' %>"
+      class="form-control"
+      id="fileName"
+    />
+  </div>
+
+  <div class="form-group text-right mt-3">
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+  </div>
+</form>
