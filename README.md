@@ -28,3 +28,53 @@
   "authors": "string"
 }
 ```
+
+## РЕШЕНИЕ ЗАДАЧИ 2
+
+Запрос(ы) для вставки данных минимум о двух книгах в коллекцию books
+
+```js
+db.connection.insertMany([
+  {
+    id: 3,
+    title: "Как управлять вселенной, не привлекая внимания санитаров",
+    description: "Эпическая сага о сумасшествии в современном мире",
+    authors: "Иван Бездомный",
+  },
+  {
+    id: 2,
+    title: "Загадка Дыры",
+    description:
+      "Книга о природе гравитационного коллапса сверхмассивных объектов и его влиянии на энтропию вселенной",
+    authors: "Доктор Кто",
+  },
+]);
+```
+
+Запрос для поиска полей документов коллекции books по полю title
+
+```js
+const queryString = "Как управлять вселенной, не привлекая внимания санитаров";
+
+db.collection.find({
+  title: queryString,
+});
+```
+
+Запрос для редактирования полей: description и authors коллекции books по \_id записи.
+
+```js
+const id2update = 1;
+const newData = {
+  description = "Новое описание",
+  authors = "Новые авторы",
+};
+
+db.connection.updateOne(
+  { _id: { $eq: id2update } },
+  { $set: {
+    description: newData.description,
+    authors: newData.authors,
+  }}
+)
+```
