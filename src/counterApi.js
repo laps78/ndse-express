@@ -1,5 +1,5 @@
-const PORT = process.env.COUNTER_PORT;
-const BASE_URL = process.env.COUNTER_URL;
+const PORT = process.env.COUNTER_PORT || 3002;
+const BASE_URL = process.env.COUNTER_URL || "http://localhost";
 
 const fetchCounter = async (url, method = "GET") => {
   try {
