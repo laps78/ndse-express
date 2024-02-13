@@ -1,5 +1,9 @@
 <%- include("../port/layout-start", { title: book.title}) %> <%-
 include("../elems/menu") %> <% console.log(book) %>
+<div class="flex justify-between items-center mb-[30px]">
+  <h1 class="text-3xl font-bold"><%= book.title %></h1>
+  <h3><strong>Просмотров книги: </strong><span><%= count %></span></h3>
+</div>
 <a href="/books/update/<%= book.id %>">Редактировать</a>
 <br />
 <img
