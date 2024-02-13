@@ -33,9 +33,13 @@ router.get("/books/:id", async (req, res) => {
   const idx = books.findIndex((elem) => elem.id === id);
   if (idx !== -1) {
     const counterResponce = await counter.fetch(`counter/${id}/incr`, "POST");
+    let count = "∞";
+    if (counterResponce) {
+      count = counterResponce.count;
+    }
     res.render("books/view", {
       book: books[idx],
-      count: counterResponce.count,
+      count: count,
     });
   } else {
     res.json("404 | книга не найдена");

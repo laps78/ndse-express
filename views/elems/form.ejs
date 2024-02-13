@@ -51,11 +51,9 @@
       class="form-check-input"
       value="<%= book.favorite || true %> "
       id="favorite"
-      <%
-      if(book.favorite)
-      {%
-    />
-    checked <% } %> />
+      <% if(book.favorite){ %>
+	    checked <% } %>
+	    />
     <label class="form-check-label" for="favorite">В избранном</label>
   </div>
 
