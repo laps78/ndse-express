@@ -26,17 +26,14 @@ class Storage {
     this.data = data;
   }
 
-  read() {
+  async read() {
     try {
-      fs.readFile(this.path, (err, data) => {
-        if (err) {
-          console.error(err);
-        }
-        const readData = JSON.parse(data);
-        this.setData(readData);
-      });
+      const readData = await fs.promises.readFile(this.path, "utf8");
+      const parsedData = JSON.parse(readData);
+      this.setData(parsedData);
+      return parsedData;
     } catch (err) {
-      console.error(err);
+      console.error(`Ошибка чтения данных хранилища ${this.name}: `, err);
     }
   }
 

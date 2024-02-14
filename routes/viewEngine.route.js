@@ -6,12 +6,11 @@ const formMulter = require("../src/middleware/uploadFromFormMW");
 const { Storage } = require("../src/storage.io");
 const { createBook, updateBook } = require("../src/book.mod");
 
-router.use((req, res, next) => {
+router.use(async (req, res, next) => {
   const storage = new Storage("library");
-  setTimeout(() => {
-    req.storage = storage;
-    next();
-  }, 1000);
+  req.storage = await storage.read();
+  /* следующтй next() вызывается до окончания выполнения read()??? */
+  next();
 });
 
 router.get("/", (req, res) => {
@@ -20,9 +19,10 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/books", (req, res) => {
+router.get("/books", async (req, res) => {
   res.render("books/index", {
     title: "Библиотека",
+    /* следующая строка не успевает получить данные*/
     books: req.storage.data,
   });
 });
