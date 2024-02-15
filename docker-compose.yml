@@ -1,14 +1,14 @@
 version: "3"
 services:
   library:
-    image: laps78/library:0.1
+    image: laps78/library:0.1.1
     restart: always
     volumes:
       - ./:/library-app
     command: npm run dev
     ports:
       - 80:4747
-    envoronnemt:
+    environment:
       COUNTER_PORT: 3002
       COUNTER_URL: http://localhost
       UrlDB: mongodb://root:example@mongo:27017

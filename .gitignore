@@ -1,10 +1,16 @@
-node_modules
-.env
+# node unified source codes
+node_modules/
 
+# foreing service files
+db_data/
 data/
 counter_data/
-server.log
+
+# user storage files
 public/books/
 public/img/
 
+# other
+server.log
+.env
 README.md
