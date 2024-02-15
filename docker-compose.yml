@@ -1,30 +1,60 @@
-version: "3.9"
+version: "3"
 services:
   library:
     image: laps78/library:0.1
+    restart: always
     volumes:
-      - ./:/app
+      - ./:/library-app
     command: npm run dev
     ports:
       - 80:4747
     envoronnemt:
-      - COUNTER_PORT=3002
-      - COUNTER_URL=http://localhost
+      COUNTER_PORT: 3002
+      COUNTER_URL: http://localhost
+      UrlDB: mongodb://root:example@mongo:27017
+      DB_NAME: library
+    depends_on:
+      - mongo
+      - counter
+
   counter-storage:
     image: redis
+    restart: always
     volumes:
-      - ./data:/data
+      - ./counter_data:/data
+
   counter:
-    image: node:latest
+    image: node:alpine
+    restart: always
     volumes:
       - ./counter:/app
     working_dir: /app
     ports:
       - 3002:3002
     environment:
-      - PORT=3002
-      - REDIS_URL=redis://storage
+      PORT: 3002
+      REDIS_URL: redis://storage
     command: npm run dev
     depends_on:
-      - library
       - counter-storage
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./db_data/mongo:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017
+    depends_on:
+      - mongo
