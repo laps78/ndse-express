@@ -1,12 +1,3 @@
-# foreing service folders
-counter_data/*
-counter/*
-db_data/*
-
-# foreing service files
-docker-compose.yml
-
-# other files
-config.js
 server.log
 README.md
+data/

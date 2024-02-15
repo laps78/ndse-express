@@ -4,9 +4,16 @@ WORKDIR /library-app
 
 ARG NODE_ENV=development
 
-COPY  ./package*.json ./
+COPY  ./package*.json \
+      ./src           \
+      ./routes        \
+      ./views         \
+      ./public        \
+      ./data-storage  \
+      ./index.js      \
+      ./
 RUN npm install
-COPY . ./
+
 
 ENV PORT=4747
 
