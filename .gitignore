@@ -2,6 +2,7 @@ node_modules
 .env
 
 data/
+counter_data/
 server.log
 public/books/
 public/img/
