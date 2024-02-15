@@ -1,7 +1,8 @@
 // import basic modules
 const express = require("express");
 const mongoose = require("mongoose");
-const api = require("./routes/api.route");
+const newApiDB = require("./routes/newApiDB.route");
+const apiOld = require("./routes/api.route");
 const dotenv = require("dotenv");
 const viewEngine = require("./routes/viewEngine.route");
 
@@ -29,7 +30,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", loggerMW);
 app.use("/", errorMW);
 app.use("/", viewEngine);
-app.use("/api", api);
+app.use("/api", newApiDB);
+app.use("/api_old", apiOld);
 app.use("/upload", uploadRoute);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
 

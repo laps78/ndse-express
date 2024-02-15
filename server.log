@@ -992,3 +992,22 @@
 20:13:20:GET:/books/c4aa8739-bd52-450e-b370-ac60e0b54b77:Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0
 20:13:22:GET:/public/img/:Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0
 20:13:39:GET:/books/update/c4aa8739-bd52-450e-b370-ac60e0b54b77:Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0
+12:58:9:GET:/:Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0
+12:58:10:GET:/favicon.ico:Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0
+12:58:12:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0
+12:58:40:GET:/api/books:PostmanRuntime/7.32.1
+13:5:5:POST:/api/books:PostmanRuntime/7.32.1
+13:5:32:GET:/api/books:PostmanRuntime/7.32.1
+13:6:27:POST:/api/books:PostmanRuntime/7.32.1
+13:6:33:GET:/api/books:PostmanRuntime/7.32.1
+13:15:20:PUT:/api/books/65ce0c02b6d7e64ba947f3f0:PostmanRuntime/7.32.1
+13:15:57:PUT:/api/books/65ce0c02b6d7e64ba947f3f0:PostmanRuntime/7.32.1
+13:15:58:GET:/api/65ce0c02b6d7e64ba947f3f0:PostmanRuntime/7.32.1
+13:16:16:GET:/api/books:PostmanRuntime/7.32.1
+13:16:36:POST:/api/books:PostmanRuntime/7.32.1
+13:17:7:GET:/api/books:PostmanRuntime/7.32.1
+13:18:10:PUT:/api/books/65ce0eb54d0a899de6d37a4d:PostmanRuntime/7.32.1
+13:18:11:GET:/api/65ce0eb54d0a899de6d37a4d:PostmanRuntime/7.32.1
+13:19:33:GET:/api/books:PostmanRuntime/7.32.1
+13:21:4:DELETE:/api/books/65ce0eb54d0a899de6d37a4d:PostmanRuntime/7.32.1
+13:21:40:GET:/api/books:PostmanRuntime/7.32.1
