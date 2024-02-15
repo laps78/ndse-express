@@ -4,7 +4,7 @@ node_modules/
 # foreing service files
 db_data/
 data/
-counter_data/
+#counter_data/
 
 # user storage files
 public/books/

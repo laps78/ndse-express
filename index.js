@@ -1,5 +1,6 @@
 // import basic modules
 const express = require("express");
+const mongoose = require("mongoose");
 const api = require("./routes/api.route");
 const dotenv = require("dotenv");
 const viewEngine = require("./routes/viewEngine.route");
@@ -10,8 +11,11 @@ const notFoundMW = require("./src/middleware/404");
 const errorMW = require("./src/middleware/error");
 const uploadRoute = require("./routes/upload.route");
 
-// init process env
+// init env
 dotenv.config();
+const PORT = process.env.PORT || 3000;
+const UrlDB = process.env.UrlDB;
+const DB_NAME = process.env.DB_NAME;
 
 // create app
 const app = express();
@@ -36,5 +40,19 @@ const authResBody = {
 
 app.use(notFoundMW);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT) && console.log(`listening on http://localhost:${PORT}`);
+const startApp = async (PORT, UrlDB, DB_NAME) => {
+  try {
+    await mongoose.connect(UrlDB, {
+      dbName: DB_NAME,
+    });
+    app.listen(PORT) &&
+      console.log(`Приложение успешно запущено localhost:${PORT}`);
+  } catch (err) {
+    console.error(
+      `Ошибка при запуске приложения(port=${PORT}, db_adress=${UrlDB}): `,
+      err
+    );
+  }
+};
+
+startApp(PORT, UrlDB, DB_NAME);
