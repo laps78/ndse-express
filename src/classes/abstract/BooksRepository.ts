@@ -1,26 +1,27 @@
-abstract classs BooksRepository {
+import { Book } from "../../interfaces/Book";
+export abstract class BooksRepository {
   /**
    * создание книги.
    */
-  createBook(book){ }
-  
+  createBook(book: Book) {}
+
   /**
    * получение книги по id.
    */
-  getBook(id){ }
-  
+  getBook(id) {}
+
   /**
    * получение всех книг.
    */
-  getBooks(){ }
-  
+  getBooks() {}
+
   /**
    * обновление книги.
    */
-  updateBook(id){ }
-  
+  updateBook(id) {}
+
   /**
    * удаление книги.
    */
-  deleteBook(id){}
+  deleteBook(id) {}
 }
