@@ -3,25 +3,25 @@ export abstract class BooksRepository {
   /**
    * создание книги.
    */
-  createBook(book: Book) {}
+  abstract createBook(book: Book): Promise<any> {}
 
   /**
    * получение книги по id.
    */
-  getBook(id) {}
+  abstract getBook(id: string): Promise<any> {}
 
   /**
    * получение всех книг.
    */
-  getBooks() {}
+  abstract getBooks(): Promise<any> {}
 
   /**
    * обновление книги.
    */
-  updateBook(id) {}
+  abstract updateBook(id: string): Promise<any> {}
 
   /**
    * удаление книги.
    */
-  deleteBook(id) {}
+  abstract deleteBook(id: string): Promise<any> {}
 }
