@@ -10,7 +10,6 @@ import Repo from "./src/classes/BookRepository";
  * 2. Импортировал класс реализующий BookRepository
  *
  * (-) Также не совсем ясен синтаксис: Что указывается в <таких> скобках??
- * (-) Что делает toSelf?
  */
 const container = new Container();
 container.bind(Repo).toSelf();
