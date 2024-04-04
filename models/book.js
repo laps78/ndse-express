@@ -17,10 +17,6 @@ const bookSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  authors: {
-    type: String,
-    default: "Автор не установлен",
-  },
   fileCover: {
     type: String,
     default: "",

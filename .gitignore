@@ -10,7 +10,10 @@ counter_data/
 public/books/
 public/img/
 
-# other
+# logs
 server.log
+*.log
+
+# other
 .env
 README.md

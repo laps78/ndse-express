@@ -1011,3 +1011,7 @@
 13:19:33:GET:/api/books:PostmanRuntime/7.32.1
 13:21:4:DELETE:/api/books/65ce0eb54d0a899de6d37a4d:PostmanRuntime/7.32.1
 13:21:40:GET:/api/books:PostmanRuntime/7.32.1
+18:1:8:GET:/:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+18:1:9:GET:/favicon.ico:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+18:1:14:GET:/:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+18:1:16:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
