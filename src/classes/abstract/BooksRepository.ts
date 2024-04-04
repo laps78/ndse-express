@@ -1,10 +1,5 @@
-import "reflect-metadata";
 import { Book } from "../../interfaces/Book";
-import { injectable, inject } from "inversify";
-import { TYPES } from "../../types/types";
-
-@injectable()
-export default class BooksRepository {
+export default abstract class BooksRepository {
   /**
    * создание книги.
    */
