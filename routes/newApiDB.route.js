@@ -7,9 +7,9 @@ router.get("/books", async (req, res) => {
     const books = await Book.find().select("-__v");
     res.status(200).json(books);
   } catch (error) {
-    console.error(`Database err handling route ${req.method}: /${id}`, error);
+    console.error(`Database err handling route ${req.method}: /`, error);
     res.status(500).json({
-      message: `Database err handling route ${req.method}: /${id}`,
+      message: `Database err handling route ${req.method}: /`,
       erroe: error,
     });
   }

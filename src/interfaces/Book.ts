@@ -3,7 +3,7 @@ export interface Book {
   title: string;
   description: string;
   authors: string;
-  favorite: string;
+  favorite: boolean;
   fileCover: string;
   fileName: string;
 }
