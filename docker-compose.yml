@@ -24,7 +24,7 @@ services:
       - ./counter_data:/data
 
   counter:
-    image: node:alpine
+    image: laps78/counter:v2.0.0
     restart: always
     volumes:
       - ./counter:/app
@@ -34,12 +34,12 @@ services:
     environment:
       PORT: 3002
       REDIS_URL: redis://storage
-    command: npm run dev
+    command: sh -c "npm install && npm run dev"
     depends_on:
       - counter-storage
 
   mongo:
-    image: mongo
+    image: mongo:4.4.7-rc0-focal
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
