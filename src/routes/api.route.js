@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { Storage } = require("../src/storage.io");
+const { Storage } = require("../storage.io");
 
-const { createBook, updateBook } = require("../src/book.mod");
+const { createBook, updateBook } = require("../book.mod");
 
 router.use((req, res, next) => {
   const storage = new Storage("library");

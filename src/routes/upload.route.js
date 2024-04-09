@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const addCoverMW = require("../src/middleware/newCover");
-const addBookTextMW = require("../src/middleware/newBook");
-const { findItem } = require("../src/functions");
-const { Storage } = require("../src/storage.io");
+const addCoverMW = require("../middleware/newCover");
+const addBookTextMW = require("../middleware/newBook");
+const { findItem } = require("../functions");
+const { Storage } = require("../storage.io");
 
 router.post("/cover/:id", addCoverMW.single("cover-img"), (req, res) => {
   if (findItem(req.params.id)) {

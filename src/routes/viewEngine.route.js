@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const counter = require("../src/counterApi");
-const formMulter = require("../src/middleware/uploadFromFormMW");
+const counter = require("../counterApi");
+const formMulter = require("../middleware/uploadFromFormMW");
 
-const { Storage } = require("../src/storage.io");
-const { createBook, updateBook } = require("../src/book.mod");
+const { Storage } = require("../storage.io");
+const { createBook, updateBook } = require("../book.mod");
 
 router.use((req, res, next) => {
   const storage = new Storage("library");

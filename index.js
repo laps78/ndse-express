@@ -1,16 +1,16 @@
 // import basic modules
 const express = require("express");
 const mongoose = require("mongoose");
-const newApiDB = require("./routes/newApiDB.route");
-const apiOld = require("./routes/api.route");
 const dotenv = require("dotenv");
-const viewEngine = require("./routes/viewEngine.route");
+const newApiDB = require("./src/routes/newApiDB.route");
+const apiOld = require("./src/routes/api.route");
+const viewEngine = require("./src/routes/viewEngine.route");
 
 // import middleware & routers
 const loggerMW = require("./src/middleware/logger");
 const notFoundMW = require("./src/middleware/404");
 const errorMW = require("./src/middleware/error");
-const uploadRoute = require("./routes/upload.route");
+const uploadRoute = require("./src/routes/upload.route");
 
 // init env
 dotenv.config();
