@@ -17,3 +17,5 @@ server.log
 # other
 .env
 README.md
+
+data-storage/library.json
