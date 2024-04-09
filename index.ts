@@ -1,16 +1,15 @@
 // import basic modules
 import express from "express";
 import mongoose from "mongoose";
-import newApiDB from "./routes/newApiDB.route";
-const apiOld = require("./routes/api.route");
 import dotenv from "dotenv";
-const viewEngine = require("./routes/viewEngine.route");
+import newApiDB from "./src/routes/newApiDB.route";
+import viewEngine from "./src/routes/viewEngine.route";
 
 // import middleware & routers
-const loggerMW = require("./src/middleware/logger");
-const notFoundMW = require("./src/middleware/404");
-const errorMW = require("./src/middleware/error");
-const uploadRoute = require("./routes/upload.route");
+import loggerMW from "./src/middleware/logger";
+import notFoundMW from "./src/middleware/404.ts";
+import errorMW from "./src/middleware/error";
+import uploadRoute from "./src/routes/upload.route";
 
 // init env
 dotenv.config();
@@ -31,14 +30,8 @@ app.use("/", loggerMW);
 app.use("/", errorMW);
 app.use("/", viewEngine);
 app.use("/api", newApiDB);
-app.use("/api_old", apiOld);
 app.use("/upload", uploadRoute);
 app.use("/public/books/", express.static(__dirname + "/public/books/"));
-
-const authResBody = {
-  id: 1,
-  mail: "test@mail.ru",
-};
 
 app.use(notFoundMW);
 

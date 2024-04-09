@@ -1,6 +1,6 @@
-const { books } = require("../../data-storage/library");
+import { books } from "../../data-storage/library";
 
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
   const bookIndex = books.findIndex((el) => el.id === req.params.id);
   if (bookIndex !== -1) {
     return bookIndex;

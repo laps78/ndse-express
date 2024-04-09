@@ -1043,3 +1043,7 @@
 12:48:28:GET:/favicon.ico:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
 12:48:31:GET:/books/a9753138-7675-4891-bee8-3439b68578a0:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
 12:48:32:GET:/public/img/:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+19:44:57:GET:/books/a9753138-7675-4891-bee8-3439b68578a0:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+19:45:0:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+19:47:43:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0
+19:52:4:GET:/books:Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0

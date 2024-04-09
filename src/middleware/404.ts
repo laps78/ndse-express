@@ -1,4 +1,6 @@
-module.exports = (req, res) => {
+const notFoundMW = (req, res) => {
   res.status(404);
   res.json("404 | ничего подходящего не нашлось :(");
 };
+
+export default { notFoundMW };
